@@ -15,13 +15,12 @@ export const EditPage = () => {
   };
 
   const SetList = async () => {
-    const result = await UpdateUser(token)
-    console.log(result.data)
-    // if(result.data._id == token) {
-    //   console.log(result.data)
-    // } else {
-    //   console.log("error")
-    // }
+    const result = await UpdateUser(token, profile)
+    if(result.data) {
+      console.log(result.data)
+    } else {
+      console.log("error")
+    }
   }
   
 

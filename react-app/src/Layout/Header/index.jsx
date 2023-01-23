@@ -5,9 +5,8 @@ import { useGlobalContext } from "../../Context";
 
 
 export const Header = () => {
-  const [user, setUser] = useState({});
-  
-  const {profile, setProfile} = useGlobalContext()
+    const {profile} = useGlobalContext()
+    const {firstname, lastname, position, profileIMG} = profile
 
     const Get = async ()=>{
         const result = await GetUser("63c80aecd1a82b03e8b2926b")
@@ -20,20 +19,18 @@ export const Header = () => {
   return (
     <div className="header-component">
       <div className="img-div">
-        <img src={user.profileIMG} alt=""/>
-        {/* {
+        {
           //Use URL.createObjectURL(...imgFromContext) to add image from local
-          user.profileIMG && (
-            <img src={URL.createObjectURL(user.profileIMG)} alt="Profile IMG" />
+          profileIMG && (
+            <img src={URL.createObjectURL(profileIMG)} alt="Profile IMG" />
           )
-        } */}
+        }
       </div>
       <div className="details-div">
         <p>
-          {user.firstName} {user.lastName}
+          {firstname} {lastname}
         </p>
-        <p>{user.position}</p>
-        <button onClick={Get}>Click Get</button>
+        <p>{position}</p>
       </div>
     </div>
   )
