@@ -15,6 +15,7 @@ export const EditPage = () => {
   };
 
   const SetList = async () => {
+    delete profile._id;
     const result = await UpdateUser(token, profile)
     if(result.data) {
       console.log(result.data)
@@ -48,6 +49,7 @@ export const EditPage = () => {
                   className="input"
                   placeholder="First Name"
                   name="firstname"
+                  defaultValue={profile.firstname}
                   onChange={handleSubmit}
                 />
               </div>
@@ -58,6 +60,7 @@ export const EditPage = () => {
                   className="input"
                   placeholder="Last Name"
                   name="lastname"
+                  defaultValue={profile.lastname}
                   onChange={handleSubmit}
                 />
               </div>
@@ -68,6 +71,7 @@ export const EditPage = () => {
                   name="age"
                   className="input"
                   placeholder="Age"
+                  defaultValue={profile.age}
                   onChange={handleSubmit}                />
               </div>
               <div>
@@ -79,6 +83,7 @@ export const EditPage = () => {
                       className="gender"
                       name="gender"
                       value="male"
+                      defaultValue={profile.gender}
                       onChange={handleSubmit}
                     />
                     <label htmlFor="">Male</label>
@@ -89,6 +94,7 @@ export const EditPage = () => {
                       className="gender"
                       name="gender"
                       value="female"
+                      defaultValue={profile.gender}
                       onChange={handleSubmit}
                     />
                     <label htmlFor="">Female</label>
@@ -104,6 +110,7 @@ export const EditPage = () => {
                   className="input"
                   placeholder="Position"
                   name="position"
+                  defaultValue={profile.position}
                   onChange={handleSubmit}
                 />
               </div>
@@ -125,6 +132,7 @@ export const EditPage = () => {
                   name="phone"
                   className="input"
                   placeholder="Phone Number"
+                  defaultValue={profile.phone}
                   onChange={handleSubmit}
                 />
               </div>
@@ -138,6 +146,7 @@ export const EditPage = () => {
                   aria-describedby="date-format"
                   min="1900-03-01"
                   max="2031-01-01"
+                  defaultValue={profile.birthday}
                   onChange={handleSubmit}
                 />
               </div>
@@ -148,6 +157,7 @@ export const EditPage = () => {
                   className="input file-upload"
                   name="picture"
                   accept="image/*"
+                  defaultValue={profile.profileIMG}
                   onChange={e => setProfile({...profile, profileIMG: e.target.files[0] })}
                 />
               </div>
