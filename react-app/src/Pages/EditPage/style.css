@@ -1,0 +1,58 @@
+.form-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(163, 161, 161);
+}
+
+.form-wrapper {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-divs {
+    width: 100%;
+}
+
+.input {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+}
+
+.form-divs > div {
+    margin-top: 20px;
+}
+
+.gender-box {
+    margin-top: 10px;
+}
+
+.gender-box > span {
+    margin-right: 10px;
+}
+
+.gender {
+    margin-right: 10px;
+}
+
+.form-button {
+    width: 90%;
+    margin-top: 30px;
+    padding: 15px;
+    margin-bottom: 50px;
+    background-color: rgb(83, 83, 235);
+    border: none;
+    cursor: pointer;
+}
+
+.file-upload {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
