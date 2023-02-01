@@ -23,8 +23,6 @@ export const EditPage = () => {
       console.log("error")
     }
   }
-  
-
   console.log(token)
   console.log(arr)
 
