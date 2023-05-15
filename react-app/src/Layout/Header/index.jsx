@@ -19,12 +19,15 @@ export const Header = () => {
   return (
     <div className="header-component">
       <div className="img-div">
-        {
+        <img src={profileIMG} />
+
+        {/* {
           //Use URL.createObjectURL(...imgFromContext) to add image from local
           profileIMG && (
             <img src={URL.createObjectURL(profileIMG)} alt="Profile IMG" />
           )
-        }
+        } */}
+        
       </div>
       <div className="details-div">
         <p>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const Api = "https://crudcrud.com/api/b68288f9c3794226902dbace7547b159/"
+const Api = "https://crudcrud.com/api/1971a4b4404b4ff5b5fe61e7559f1a74/"
 
 export const SetUser = (data) => {
     return axios.post(`${Api}list`, data)
@@ -18,5 +18,3 @@ export const GetUsers = () => {
 export const UpdateUser = (id, data) => {
     return axios.put(`${Api}list/${id}`, data)
 }
-
-

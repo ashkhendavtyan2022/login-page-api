@@ -12,6 +12,7 @@ const AppProvider = ({ children }) => {
     gender: '',
     position: '',
     email: '',
+    password: '',
     phone: '',
     birthday: '',
     profileIMG: '',

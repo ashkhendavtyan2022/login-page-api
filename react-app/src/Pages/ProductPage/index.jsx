@@ -11,12 +11,13 @@ export const ProductPage = () => {
         <h2>Profile Details</h2>
         <div className="product-box">
           <div className="person-img">
-                {
+            <img src={profileIMG} />
+                {/* {
                     // to add image from local, I used URL.createObjectURL(...imgFromContext)
                     profileIMG && (
                       <img src={URL.createObjectURL(profileIMG)} alt="Profile IMG" />
                     )
-                  }
+                  } */}
           </div>
           <div className="other-details">
             <div>

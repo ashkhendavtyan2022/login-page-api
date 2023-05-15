@@ -11,4 +11,12 @@ export const NAVIGATION_PAGES = {
         link: "edit",
         label: "Edit",
     },
+    shop: {
+        link: "shop",
+        label: "Shop",
+    },
+    carts: {
+        link: "carts",
+        label: "Carts",
+    },
 };

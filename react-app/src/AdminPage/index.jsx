@@ -6,6 +6,10 @@ import {useGlobalContext} from "../Context";
 
 export const Admin = ()=>{
     const {profile, setProfile, arr, setArr} = useGlobalContext()
+    const [error, setError] = useState({
+        errorEmail: "",
+        errorPassword: "", 
+    })
 
     const Change = (e)=>{
         setProfile({...profile,[e.target.name]:e.target.value})
@@ -14,16 +18,61 @@ export const Admin = ()=>{
     const validation = ()=>{
         let valid = true
 
+        const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const uppercaseRegExp   = /(?=.*?[A-Z])/;
+        const digitsRegExp      = /(?=.*?[0-9])/;
+        const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+
+        const errors = {
+            errorEmail: "",
+            errorPassword: "",
+        }
+
+        if(!profile.email) {
+            errors.errorEmail = "Email is Required!"
+            valid = false
+        } else if (regex.test(profile.email) === false) {
+            errors.errorEmail = "Email is Not Valid!"
+            valid = false
+        } else {
+            errors.errorEmail = " "
+            valid = true
+        }
+
+
+        if(!profile.password) {
+            errors.errorPassword = "Password is Required!"
+            valid = false
+        } 
+        // else if (profile.password.length < 8) {
+        //     errors.errorPassword = "Password must be at least 8 chars long!"
+        //     valid = false
+        // } else if (uppercaseRegExp.test(profile.password) === false) {
+        //     errors.errorPassword = "Password must contain at least one uppercase!"
+        //     valid = false
+        // } else if (digitsRegExp.test(profile.password) === false) {
+        //     errors.errorPassword = "Password must contain at least one digit!"
+        //     valid = false
+        // } else if (specialCharRegExp.test(profile.password) === false) {
+        //     errors.errorPassword = "Password must contain at least one special character!"
+        //     valid = false
+        // } 
+        // else {
+        //     errors.errorPassword = ""
+        //     valid = true
+        // }
+
+        setError(errors)
+
         return valid
     }
+
     const Call = async ()=>{
         if(validation()) {
             const result = await SetUser(profile)
             if (result.data) {
                 localStorage.setItem("token", result.data._id)
-                // localStorage.setItem("token",lis[0]._id)
                 window.location.reload()
-                // console.log(result.data)
             }
         }
     }
@@ -32,27 +81,25 @@ export const Admin = ()=>{
         const result = await GetUsers()
         if(result.data){
             console.log(result.data)
-            setArr(result.data.filter(x => x.email === profile.email))
-            Set(result.data[0]._id)
-        }
-
-    }
-
-    const Set = (y)=>{
-        if(arr[0]){
-            // Set(result.data._id)
-            console.log(y)
-            localStorage.setItem("token", y)
-            window.location.reload()
+            const arr = []
+            arr.push(result.data.filter(x => x.email === profile.email))
+            if(arr[0]){
+                localStorage.setItem("token", arr[0][0]._id)
+                window.location.reload()
+            }
         }
 
     }
 
     return <div className="P-admin">
         {console.log(arr)}
-        <input type="text" name="email" onChange={Change}/>
-        <input type="password"/>
-        <button onClick={Sign}>Sign in</button>
-        <button onClick={Call}>Registration</button>
+        <input type="email" name="email" onChange={Change}/>
+        <div className="errorMsg">{error.errorEmail ? <p>{error.errorEmail}</p> : null}</div>
+        
+        <input type="password" name="password" onChange={Change}/>
+        <div className="errorMsg">{error.errorPassword ? <p>{error.errorPassword}</p> : null}</div>
+        
+        <button onClick={Sign}>Sign In</button>
+        <button onClick={Call}>Register</button>
     </div>
 }

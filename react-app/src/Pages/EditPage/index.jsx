@@ -14,6 +14,18 @@ export const EditPage = () => {
     setProfile({...profile,[e.target.name] : e.target.value})
   };
 
+  const uploadImage = (e) => {
+    const element = e.currentTarget
+    const fileList = element.files;
+    if (fileList && fileList?.length) {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setProfile({...profile, profileIMG:reader.result})
+      });
+      reader.readAsDataURL(fileList[0]);
+    }
+  }
+
   const SetList = async () => {
     delete profile._id;
     const result = await UpdateUser(token, profile)
@@ -25,6 +37,7 @@ export const EditPage = () => {
   }
   console.log(token)
   console.log(arr)
+
 
   // const SetList = async () => {
   //   const result = await SetUser(profile)
@@ -156,7 +169,9 @@ export const EditPage = () => {
                   name="picture"
                   accept="image/*"
                   defaultValue={profile.profileIMG}
-                  onChange={e => setProfile({...profile, profileIMG: e.target.files[0] })}
+                  onChange={uploadImage}
+                  
+                  // {e => setProfile({...profile, profileIMG: e.target.files[0] })}
                 />
               </div>
               <button className="form-button" onClick={SetList}>Submit Changes</button>
